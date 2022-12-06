@@ -1,7 +1,5 @@
 ## Web缓存
 
-- http缓存
-- 浏览器缓存
 
 ### http缓存
 
@@ -129,12 +127,19 @@ LM-factor算法计算新鲜周期:
 6. 设置缓存控制
 
 6.1 通过HTTP-EQUIV控制HTML缓存
-HTTP服务器可以用此信息来处理文档。
-
+HTML 2.0定义了<META HTTP-EQUIV>标签。这个可选的标签位于HTML文档的顶部，定义了应该与文档有所关联的HTTP首部。
+```html
+<HTML>
+  <HEAD>
+    <TITLE>My Document</TITLE>
+    <META HTTP-EQUIV="Cache-control" CONTENT="no-cache">
+  </HEAD>
+最初，HTTP-EQUIV标签是给Web服务器使用的。如HTML RFC 1866所述，Web服务器应该为HTML解析<META HTTP-EQUIV>标签，并将规定的首部插入HTTP响应中：
+          ...
+```
+HTTP服务器可以用此信息来处理文档,在为请求此文档的报文所发送的响应中包含一个首部字段。但是通过这种方式可能会与拦截代理缓存所用的规则有所不同使缓存的过期处理行为发生混乱。
 
 ### reference
-
-### HTTP caching standard
-https://httpwg.org/specs/rfc9111.html
-
-
+---
+### HTTP caching standard：[https://httpwg.org/specs/rfc9111.html](https://httpwg.org/specs/rfc9111.html)
+### 《HTTP权威指南》David Gourley，Brian Totty 
